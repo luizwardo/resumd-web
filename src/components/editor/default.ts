@@ -102,11 +102,6 @@ Technologies: React, NextJS, Javascript, styled-components, Golang, Docker, AWS,
     css: `/* You can poke around this CSS if you want to customize your formatting / styling further */
 /* You can even import custom fonts! */
 
-@page {
-  size: letter;
-  margin: 0.5in;
-}
-
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
 

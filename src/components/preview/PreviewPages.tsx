@@ -3,8 +3,8 @@ import { createSignal, createEffect, onMount, onCleanup, Show } from "solid-js";
 const pagedJsUrl = `${import.meta.env.BASE_URL}paged.esm.js`;
 
 interface PreviewPagesProps {
-    html?: string;
-    css?: string;
+    html: string;
+    css: string;
 }
 
 export default function PreviewPages(props: PreviewPagesProps) {
@@ -41,8 +41,8 @@ export default function PreviewPages(props: PreviewPagesProps) {
     // In Solid, createEffect automatically tracks dependencies (props.html, props.css)
     createEffect(() => {
         // We access props here to ensure the effect tracks them
-        const htmlContent = props.html || "";
-        const cssContent = props.css || "";
+        const htmlContent = props.html;
+        const cssContent = props.css;
 
         const iframe = iframeRef;
 
@@ -69,25 +69,16 @@ export default function PreviewPages(props: PreviewPagesProps) {
     });
 
     return (
-        <div class="relative w-full p-8">
-            <iframe
-                ref={iframeRef}
-                style={{
-                    width: "100%",
-                    height: iframeHeight() ? `${iframeHeight()}px` : "100vh",
-                    border: "none",
-                    overflow: "hidden",
-                }}
-                title="Resume Preview"
-            />
-
-            {/* Loading Indicator using Solid's <Show> */}
-            <Show when={isRendering()}>
-                <div class="fixed bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded text-sm pointer-events-none">
-                    Rendering...
-                </div>
-            </Show>
-        </div>
+        <iframe
+            ref={iframeRef}
+            style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+                overflow: "hidden",
+            }}
+            title="Resume Preview"
+        />
     );
 }
 
@@ -102,40 +93,37 @@ const iframeHtmlContent = (pagedJsUrl: string) => `
                 background: transparent;
             }
             .pagedjs_pages {
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
+                padding: 15px 0;
+                gap: 20px;
             }
             .pagedjs_page {
                 background: white;
-                margin-bottom: 2rem;
-                box-shadow:
-                    0 4px 6px -1px rgb(0 0 0 / 0.1),
-                    0 2px 4px -2px rgb(0 0 0 / 0.1);
             }
-            /* Hide the buffer containers */
-            .preview-buffer {
+            .preview-container {
+                width: 100%;
+            }
+            .preview-hidden {
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 100%;
                 visibility: hidden;
             }
-            .preview-active {
+            .preview-visible {
                 position: relative;
                 visibility: visible;
             }
         </style>
     </head>
     <body>
-        <div id="preview-a" class="preview-buffer"></div>
-        <div id="preview-b" class="preview-buffer"></div>
+        <div id="preview-root"></div>
 
         <script type="module">
             import { Previewer } from "${pagedJsUrl}";
 
-            let activeBuffer = "preview-a";
             let renderId = 0;
             let isRendering = false;
             let queuedRender = null;
@@ -158,41 +146,65 @@ const iframeHtmlContent = (pagedJsUrl: string) => `
             async function startRender(html, css) {
                 isRendering = true;
                 const currentRenderId = ++renderId;
-                const targetId = activeBuffer === "preview-a" ? "preview-b" : "preview-a";
-                const targetEl = document.getElementById(targetId);
+                const root = document.getElementById("preview-root");
 
-                if (!targetEl) {
-                    console.warn("Preview buffer not found", targetId);
+                if (!root) {
+                    console.error("Preview root not found");
                     isRendering = false;
                     scheduleNextRender();
                     return;
                 }
 
-                const fullContent =
-                    "<style>* { overflow-wrap: break-word; word-break: break-word; }</style>" +
-                    html +
-                    "<style>" +
-                    css +
-                    "</style>";
+                // Ensure at least one page is rendered even if HTML is empty
+                if (!html || !html.trim()) {
+                    html = "&nbsp;";
+                }
+
+                // Create new container for this render
+                const container = document.createElement("div");
+                container.classList.add("preview-container", "preview-hidden");
+                root.appendChild(container);
+
+                // Inject CSS
+                let styleEl = document.getElementById("user-style");
+                if (!styleEl) {
+                    styleEl = document.createElement("style");
+                    styleEl.id = "user-style";
+                    document.head.appendChild(styleEl);
+                }
+                // Prepend default @page rules so user CSS can override them
+                const defaultCss = "@page { margin: 40mm; }";
+                styleEl.textContent = defaultCss + "\\n" + css;
+
+                // Wait for fonts to load
+                await document.fonts.ready;
 
                 const previewer = new Previewer();
-                targetEl.innerHTML = "";
 
                 try {
-                    await previewer.preview(fullContent, [], targetEl);
+                    await previewer.preview(html, [], container);
 
                     if (currentRenderId === renderId) {
-                        const previousEl = document.getElementById(activeBuffer);
-                        previousEl && previousEl.classList.remove("preview-active");
-                        targetEl.classList.add("preview-active");
-                        activeBuffer = targetId;
+                        // Remove old containers
+                        Array.from(root.children).forEach(child => {
+                            if (child !== container) {
+                                child.remove();
+                            }
+                        });
+
+                        // Show new container
+                        container.classList.remove("preview-hidden");
+                        container.classList.add("preview-visible");
 
                         updateHeight();
-
                         window.parent.postMessage({ type: "RENDER_DONE" }, "*");
+                    } else {
+                        // Superseded
+                        container.remove();
                     }
                 } catch (e) {
                     console.error(e);
+                    container.remove();
                 } finally {
                     isRendering = false;
                     scheduleNextRender();
@@ -207,8 +219,8 @@ const iframeHtmlContent = (pagedJsUrl: string) => `
             // Monitor resize
             const resizeObserver = new ResizeObserver(() => updateHeight());
             resizeObserver.observe(document.body);
+
         </script>
     </body>
 </html>
-
 `;
