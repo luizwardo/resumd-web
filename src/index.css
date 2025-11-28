@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
+body {
+    color: var(--ios-label-primary);
+}
+
 @theme {
+    --color-scheme: light dark;
+
     /* System Colors */
     --color-red: var(--ios-red);
     --color-orange: var(--ios-orange);
