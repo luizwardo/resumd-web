@@ -62,7 +62,7 @@ export default function PreviewControls(props: {
     });
 
     return (
-        <div class="flex h-10 w-full items-center">
+        <div class="flex h-9 w-full items-center">
             <div class="flex-[1_1_0%]" />
             <div class="flex items-center">
                 <button

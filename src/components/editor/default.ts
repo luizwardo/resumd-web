@@ -15,29 +15,15 @@ export const DEFAULT_TEMPLATE: Template = {
 };
 
 export const TEMPLATE_1: Template = {
-    markdown: `<!--
-Welcome to resume.lol !
-
-This is the template you can use to get started.
-
-More documentation can be found in the docs section
->>> https://resume.lol/docs
--->
-@REDACTED=false
-@NAME=My Name||Hidden Name
-@EMAIL=realemail@gmail.com||fake@email.com
-@PHONE=(123) 123-REAL||(555) 123-5555
-@LOCATION=Los Angeles, CA
-@WEBSITE=mysite.com||example.com
-
-# {NAME}
+    markdown: `
+# Name
 
 <div class="section headerInfo">
 
-- {EMAIL}
-- {PHONE}
-- [{WEBSITE}](https://{WEBSITE})
-- {LOCATION}
+- email@email.com
+- 000-000-0000
+- [site.com](https://site.com)
+- Location, ST
 
 </div>
 

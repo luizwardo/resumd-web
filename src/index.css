@@ -16,12 +16,12 @@
     --color-brown: var(--ios-brown);
 
     /* Grays */
-    --color-gray: var(--ios-gray);
-    --color-gray2: var(--ios-gray2);
-    --color-gray3: var(--ios-gray3);
-    --color-gray4: var(--ios-gray4);
-    --color-gray5: var(--ios-gray5);
-    --color-gray6: var(--ios-gray6);
+    --color-gray-1: var(--ios-gray-1);
+    --color-gray-2: var(--ios-gray-2);
+    --color-gray-3: var(--ios-gray-3);
+    --color-gray-4: var(--ios-gray-4);
+    --color-gray-5: var(--ios-gray-5);
+    --color-gray-6: var(--ios-gray-6);
     --color-black: var(--ios-black);
     --color-white: var(--ios-white);
 
@@ -68,12 +68,12 @@
     --ios-brown: #ac7f5e;
 
     /* Grays */
-    --ios-gray: #8e8e93;
-    --ios-gray2: #aeaeb2;
-    --ios-gray3: #c7c7cc;
-    --ios-gray4: #d1d1d6;
-    --ios-gray5: #e5e5ea;
-    --ios-gray6: #f2f2f7;
+    --ios-gray-1: #8e8e93;
+    --ios-gray-2: #aeaeb2;
+    --ios-gray-3: #c7c7cc;
+    --ios-gray-4: #d1d1d6;
+    --ios-gray-5: #e5e5ea;
+    --ios-gray-6: #f2f2f7;
     --ios-black: #000000;
     --ios-white: #ffffff;
 
@@ -122,12 +122,12 @@
         --ios-brown: #b78a66;
 
         /* Grays */
-        --ios-gray: #8e8e93;
-        --ios-gray2: #636366;
-        --ios-gray3: #48484a;
-        --ios-gray4: #3a3a3c;
-        --ios-gray5: #2c2c2e;
-        --ios-gray6: #1c1c1e;
+        --ios-gray-1: #8e8e93;
+        --ios-gray-2: #636366;
+        --ios-gray-3: #48484a;
+        --ios-gray-4: #3a3a3c;
+        --ios-gray-5: #2c2c2e;
+        --ios-gray-6: #1c1c1e;
         --ios-black: #000000;
         --ios-white: #ffffff;
 

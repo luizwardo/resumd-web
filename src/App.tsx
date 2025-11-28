@@ -5,16 +5,20 @@ import { TEMPLATE_1 } from "./components/editor/default";
 // Components
 import Preview from "./components/preview/Preview";
 import Editor from "./components/editor/Editor";
+import Tabs from "./components/editor/Tabs";
 
 export default function App() {
     const [markdown, setMarkdown] = createSignal(TEMPLATE_1.markdown);
-    const [css, setCss] = createSignal(TEMPLATE_1.css);
+    const [css, _] = createSignal(TEMPLATE_1.css);
 
     const html = createMemo(() => marked.parse(markdown(), { async: false, breaks: true }) as string);
 
     return (
         <main class="flex h-dvh w-dvw">
-            <Editor class="w-1/2" initialValue={markdown()} onValueChange={setMarkdown} />
+            <div class="flex w-1/2 flex-col">
+                <Tabs />
+                <Editor class="flex-1" initialValue={markdown()} onValueChange={setMarkdown} />
+            </div>
             <div class="bg-separator h-dvh w-px" />
             <Preview class="w-1/2" html={html} css={css} />
         </main>
