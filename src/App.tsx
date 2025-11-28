@@ -15,12 +15,14 @@ export default function App() {
 
     return (
         <main class="flex h-dvh w-dvw">
-            <div class="flex w-1/2 flex-col">
-                <Tabs />
-                <Editor class="flex-1" initialValue={markdown()} onValueChange={setMarkdown} />
+            <div class="w-[calc(50%+1rem)] p-3">
+                <div class="shadow-primary flex h-full flex-col overflow-hidden rounded-xl">
+                    <Tabs />
+                    <Editor class="flex-1" initialValue={markdown()} onValueChange={setMarkdown} />
+                </div>
             </div>
-            <div class="bg-separator h-dvh w-px" />
-            <Preview class="w-1/2" html={html} css={css} />
+            {/* <div class="bg-separator h-dvh w-px" /> */}
+            <Preview class="flex-1" html={html} css={css} />
         </main>
     );
 }

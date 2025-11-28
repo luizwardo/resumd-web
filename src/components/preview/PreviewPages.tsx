@@ -5,7 +5,6 @@ const pagedJsUrl = `${import.meta.env.BASE_URL}paged.esm.js`;
 interface PreviewPagesProps {
     html: string;
     css: string;
-    onPagesCountChange?: (count: number) => void;
 }
 
 export default function PreviewPages(props: PreviewPagesProps) {
@@ -13,24 +12,11 @@ export default function PreviewPages(props: PreviewPagesProps) {
 
     // 1. Initialize iframe content and Message Listeners (onMount)
     onMount(() => {
-        // --- Message Handling ---
-        const handleMessage = (event: MessageEvent) => {
-            if (event.data.type === "PAGES_COUNT") {
-                props.onPagesCountChange?.(event.data.count);
-            }
-        };
-
-        window.addEventListener("message", handleMessage);
-
         // --- Iframe Initialization ---
         const iframe = iframeRef;
         if (iframe && !iframe.srcdoc) {
             iframe.srcdoc = iframeHtmlContent(pagedJsUrl);
         }
-
-        onCleanup(() => {
-            window.removeEventListener("message", handleMessage);
-        });
     });
 
     // 2. Trigger render when props change
@@ -101,11 +87,11 @@ const iframeHtmlContent = (pagedJsUrl: string) => `
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                margin: 5px 0;
-                margin-top: 55px;
+                margin: 4rem 0 5px 0;
             }
             .pagedjs_page {
                 margin: 5px auto;
+                background: white;
                 /*border: 1px solid #ddd;*/
                 box-shadow: 
                     0px 0px 0px 1px rgba(0, 0, 0, 0.06),
@@ -191,10 +177,6 @@ const iframeHtmlContent = (pagedJsUrl: string) => `
                         // Show new container
                         container.classList.remove("preview-hidden");
                         container.classList.add("preview-visible");
-
-                        // Send pages count
-                        const pages = container.querySelectorAll('.pagedjs_page').length;
-                        window.parent.postMessage({ type: "PAGES_COUNT", count: pages }, "*");
                     } else {
                         // Superseded
                         container.remove();
