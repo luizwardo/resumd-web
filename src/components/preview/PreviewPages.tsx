@@ -137,13 +137,37 @@ const iframeHtmlContent = (pagedJsUrl: string) => `
 
             let activeBuffer = "preview-a";
             let renderId = 0;
+            let isRendering = false;
+            let queuedRender = null;
 
-            window.renderPreview = async (html, css) => {
+            window.renderPreview = (html, css) => {
+                queuedRender = { html, css };
+                scheduleNextRender();
+            };
+
+            function scheduleNextRender() {
+                if (isRendering || !queuedRender) {
+                    return;
+                }
+
+                const { html, css } = queuedRender;
+                queuedRender = null;
+                startRender(html, css);
+            }
+
+            async function startRender(html, css) {
+                isRendering = true;
                 const currentRenderId = ++renderId;
                 const targetId = activeBuffer === "preview-a" ? "preview-b" : "preview-a";
                 const targetEl = document.getElementById(targetId);
 
-                // Prepare content
+                if (!targetEl) {
+                    console.warn("Preview buffer not found", targetId);
+                    isRendering = false;
+                    scheduleNextRender();
+                    return;
+                }
+
                 const fullContent =
                     "<style>* { overflow-wrap: break-word; word-break: break-word; }</style>" +
                     html +
@@ -151,30 +175,29 @@ const iframeHtmlContent = (pagedJsUrl: string) => `
                     css +
                     "</style>";
 
-                // Render
                 const previewer = new Previewer();
                 targetEl.innerHTML = "";
 
                 try {
                     await previewer.preview(fullContent, [], targetEl);
 
-                    // If this is still the latest render
                     if (currentRenderId === renderId) {
-                        // Swap visibility
-                        document.getElementById(activeBuffer).classList.remove("preview-active");
+                        const previousEl = document.getElementById(activeBuffer);
+                        previousEl && previousEl.classList.remove("preview-active");
                         targetEl.classList.add("preview-active");
                         activeBuffer = targetId;
 
-                        // Notify parent of height
                         updateHeight();
 
-                        // Notify done
                         window.parent.postMessage({ type: "RENDER_DONE" }, "*");
                     }
                 } catch (e) {
                     console.error(e);
+                } finally {
+                    isRendering = false;
+                    scheduleNextRender();
                 }
-            };
+            }
 
             function updateHeight() {
                 const height = document.body.scrollHeight;
