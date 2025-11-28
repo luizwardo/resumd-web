@@ -62,21 +62,23 @@ export default function PreviewControls(props: {
     });
 
     return (
-        <div class="flex h-9 w-full items-center">
+        <div class="mt-2.5 flex h-9 w-full items-center">
             <div class="flex-[1_1_0%]" />
-            <div class="flex items-center">
+            <div class="bg-system-primary/90 shadow-tertiary flex h-9 items-center rounded-full px-0.5 backdrop-blur-md">
+                <ZoomPercentageInput zoom={props.zoom} onZoomChange={props.setZoom} />
+
+                <div class="bg-separator mx-1 h-4 w-px" />
+
                 <button
-                    class="hover:bg-fill-tertiary flex size-7 items-center justify-center rounded-md hover:cursor-pointer"
+                    class="hover:bg-fill-tertiary flex size-8 items-center justify-center rounded-full hover:cursor-pointer"
                     onClick={handleZoomOut}
                     title="Zoom Out"
                 >
                     <IoRemoveOutline size={20} class="text-label-primary" />
                 </button>
 
-                <ZoomPercentageInput zoom={props.zoom} onZoomChange={props.setZoom} />
-
                 <button
-                    class="hover:bg-fill-tertiary flex size-7 items-center justify-center rounded-md hover:cursor-pointer"
+                    class="hover:bg-fill-tertiary flex size-8 items-center justify-center rounded-full hover:cursor-pointer"
                     onClick={handleZoomIn}
                     title="Zoom In"
                 >
@@ -86,11 +88,12 @@ export default function PreviewControls(props: {
 
             <div class="flex flex-[1_1_0%] justify-end pr-4">
                 <button
-                    class="hover:bg-fill-tertiary flex size-7 items-center justify-center rounded-md hover:cursor-pointer"
+                    class="bg-blue/90 shadow-tertiary outline-blue flex h-9 cursor-pointer items-center rounded-full pl-3.5 font-medium tracking-tight text-white outline-offset-2 backdrop-blur-md focus:outline-2"
                     onClick={props.onExport}
                     title="Export PDF"
                 >
-                    <IoDownloadOutline size={18} />
+                    <p>Export as PDF</p>
+                    <IoDownloadOutline class="mr-3 ml-2 size-5" />
                 </button>
             </div>
         </div>
@@ -118,7 +121,7 @@ function ZoomPercentageInput(props: { zoom: Accessor<number>; onZoomChange: Sett
             value={props.zoom() + "%"}
             onBlur={(e) => handleSubmit(e.currentTarget.value)}
             onKeyDown={handleKeyDown}
-            class="mx-1.5 h-7 w-12 rounded-lg border border-gray-300 bg-white text-center text-sm"
+            class="mr-0.5 ml-2 h-7 w-12 text-center text-sm outline-none"
         />
     );
 }
