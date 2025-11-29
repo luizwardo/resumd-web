@@ -74,6 +74,11 @@ export default function PreviewPages(props: { html: string; css: string }) {
           isRendering = true;
           const renderId = ++currentRenderId;
           
+          // Ensure at least one page is rendered even if HTML is empty
+          if (!html || !html.trim()) {
+              html = "&nbsp;";
+          }
+          
           try {
               // 1. Prepare styles
               // We pass the CSS as an "inline" stylesheet to PagedJS.
@@ -95,7 +100,7 @@ export default function PreviewPages(props: { html: string; css: string }) {
                   
                   // We pass the stylesheets explicitly.
                   // PagedJS will parse them with Polisher and insert transformed styles into <head>.
-                  await previewer.preview(html, stylesheets, container);
+                  await previewer.preview(\`<div id="print-root">\${html}</div>\`, stylesheets, container);
                   
                   // 4. If this is still the latest render, show it
                   if (renderId === currentRenderId) {
