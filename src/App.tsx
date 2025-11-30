@@ -1,7 +1,9 @@
 import { createSignal, createMemo } from "solid-js";
+import { makePersisted } from "@solid-primitives/storage";
 import { marked } from "marked";
 // Constants
-import { TEMPLATE_1 } from "./components/editor/default";
+import markdownTemplate from "./templates/Harvard/theme.css?raw";
+import cssTemplate from "./templates/Harvard/theme.css?raw";
 // Components
 import Preview from "./components/preview/Preview";
 import Editor from "./components/editor/Editor";
@@ -12,8 +14,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 export default function App() {
     const [activeTab, setActiveTab] = createSignal<"markdown" | "css">("markdown");
 
-    const [markdown, setMarkdown] = createSignal(TEMPLATE_1.markdown);
-    const [css, setCss] = createSignal(TEMPLATE_1.css);
+    const [markdown, setMarkdown] = makePersisted(createSignal(markdownTemplate), { name: "resumd.markdown" });
+    const [css, setCss] = makePersisted(createSignal(cssTemplate), { name: "resumd.css" });
 
     const html = createMemo(() => marked.parse(markdown(), { async: false, breaks: true }) as string);
 
