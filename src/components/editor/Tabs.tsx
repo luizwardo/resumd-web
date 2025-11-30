@@ -6,10 +6,12 @@ export default function Tabs(props: { values: string[]; active: string; onChange
             {props.values.map((value) => (
                 <button
                     type="button"
-                    class={clsx("h-9 px-7 text-sm tracking-tight", {
-                        "bg-blue/20 text-blue": value === props.active,
-                        "text-system-on-tertiary/60": value !== props.active,
-                    })}
+                    class={clsx(
+                        "border-separator h-9 border-r px-5 text-sm tracking-tight",
+                        value === props.active
+                            ? "bg-system-tertiary"
+                            : "hover:bg-system-tertiary/50 text-label-secondary",
+                    )}
                     onClick={() => props.onChange(value)}
                 >
                     {String(value)}

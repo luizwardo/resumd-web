@@ -14,7 +14,7 @@ export default function Preview(props: { class: string; html: Accessor<string>; 
 
     return (
         <div class={clsx(props.class, "relative flex flex-col")}>
-            <div class="flex-1 overflow-auto">
+            <div class="flex-1">
                 <div style={{ zoom: `${zoom()}%`, height: "100%" }}>
                     <PreviewPages html={props.html()} css={props.css()} />
                 </div>
@@ -25,7 +25,7 @@ export default function Preview(props: { class: string; html: Accessor<string>; 
                     <ZoomControl zoom={zoom} setZoom={setZoom} />
                 </div>
 
-                <div class="flex flex-1 justify-end gap-3">
+                <div class="flex flex-1 justify-end gap-3 pr-2">
                     <button
                         class="bg-blue outline-blue focus-active:outline-2 flex h-9 cursor-pointer items-center rounded-full px-3.5 font-medium tracking-tight text-white outline-offset-2 backdrop-blur-md active:outline-2"
                         onClick={handleExport}

@@ -12,7 +12,7 @@ import Tabs from "./components/editor/Tabs";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
 export default function App() {
-    const [activeTab, setActiveTab] = createSignal<"markdown" | "css">("markdown");
+    const [activeTab, setActiveTab] = createSignal<"resume.md" | "theme.css">("resume.md");
 
     const [markdown, setMarkdown] = makePersisted(createSignal(markdownTemplate), { name: "resumd.markdown" });
     const [css, setCss] = makePersisted(createSignal(cssTemplate), { name: "resumd.css" });
@@ -21,22 +21,22 @@ export default function App() {
 
     return (
         <ThemeProvider>
-            <main class="bg-system-secondary flex h-dvh w-dvw">
-                <div class="w-1/2 p-3 2xl:w-2/5">
-                    <div class="shadow-primary bg-system-tertiary flex h-full flex-col overflow-hidden rounded-xl">
-                        <Tabs values={["markdown", "css"]} active={activeTab()} onChange={setActiveTab} />
+            <main class="bg-system-grouped-secondary padding-r flex h-dvh w-dvw">
+                <div class="w-[47%] max-w-[1100px] p-3">
+                    <div class="shadow-primary bg-system-secondary flex h-full flex-col overflow-hidden rounded-xl">
+                        <Tabs values={["resume.md", "theme.css"]} active={activeTab()} onChange={setActiveTab} />
                         <Editor
                             class="flex-1"
                             activeTabId={activeTab()}
                             tabs={[
                                 {
-                                    id: "markdown",
+                                    id: "resume.md",
                                     language: "markdown",
                                     value: markdown(),
                                     onChange: setMarkdown,
                                 },
                                 {
-                                    id: "css",
+                                    id: "theme.css",
                                     language: "css",
                                     value: css(),
                                     onChange: setCss,

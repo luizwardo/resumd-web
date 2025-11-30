@@ -40,6 +40,7 @@ export default function Editor(props: { class?: string; activeTabId: string; tab
         editor = monaco.editor.create(editorContainer, {
             model: activeModel.model,
             automaticLayout: true,
+            padding: { top: 6, bottom: 10 },
             folding: false,
             minimap: { enabled: false },
             scrollbar: { useShadows: false },

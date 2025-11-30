@@ -100,7 +100,7 @@ body {
 
     /* Labels */
     --ios-label-primary: #000000;
-    --ios-label-secondary: rgba(60, 60, 67, 0.6);
+    --ios-label-secondary: rgba(60, 60, 67, 0.7);
     --ios-label-tertiary: rgba(60, 60, 67, 0.3);
     --ios-label-quaternary: rgba(60, 60, 67, 0.18);
 
@@ -173,7 +173,7 @@ body {
         --ios-separator-opaque: #38383a;
 
         /* Shadows */
-        --shadow-primary: 0 0 0 1px rgba(255, 255, 255, 0.08);
+        --shadow-primary: 0 0 0 1px rgba(255, 255, 255, 0.17);
         --shadow-secondary: 0 0 0 1px rgba(255, 255, 255, 0.08);
         --shadow-tertiary: 0 0 0 1px rgba(255, 255, 255, 0.08);
     }
