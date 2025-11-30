@@ -2,7 +2,7 @@ import { createSignal, createMemo } from "solid-js";
 import { makePersisted } from "@solid-primitives/storage";
 import { marked } from "marked";
 // Constants
-import markdownTemplate from "./templates/Harvard/theme.css?raw";
+import markdownTemplate from "./templates/Harvard/resume.md?raw";
 import cssTemplate from "./templates/Harvard/theme.css?raw";
 // Components
 import Preview from "./components/preview/Preview";

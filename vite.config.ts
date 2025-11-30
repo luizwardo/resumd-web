@@ -3,6 +3,6 @@ import solid from "vite-plugin-solid";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-    base: "/resumd-web-solid/",
+    base: "/resumd-web/",
     plugins: [solid(), tailwindcss()],
 });
