@@ -1,70 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&display=swap");
 
 @page {
-    margin: 0.5in;
+    margin: 0.4in 0.5in;
     size: letter;
 }
 
-/* meta */
 body {
-    font-family:
-        Tinos,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        "Helvetica Neue",
-        sans-serif;
+    font-family: Tinos, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Robotom, "Helvetica Neue", sans-serif;
     font-size: 14px;
     font-weight: 400;
 }
 
-.spacer {
-    margin: 0px auto;
-}
-
-.vertical-spacer {
-    height: 8px;
-}
-
-/* ordering of content */
-h1 {
-    order: 0;
-}
-
-.headerInfo {
-    order: 1;
-}
-
-/* styling content */
-h1,
-h2,
-h3,
-p,
-a,
-li {
+h1, h2, h3, p, a, li {
     color: black;
 }
 
-h2 {
-    margin: 10px 0px;
-}
-
-h3 {
-    margin: 6px 0px;
-}
-
 h1 {
-    color: black;
     text-transform: uppercase;
     text-align: left;
     font-size: 32px;
     margin: 0;
     padding: 0;
+    
 }
 
 h2 {
+    margin: 16px 0 12px 0;
     border-bottom: 1px solid #000000;
     text-transform: uppercase;
     font-size: 16px;
@@ -72,6 +33,7 @@ h2 {
 }
 
 h3 {
+    margin: 6px 0;
     display: flex;
     font-size: 15px;
     padding: 0;
@@ -100,33 +62,29 @@ ul {
     padding-right: 24px;
 }
 
-strong,
-em,
-a {
+strong, em, a {
     padding-left: 1px;
     padding-right: 2px;
 }
 
-/* header info content */
-.headerInfo > ul {
+.spacer {
+    margin: 0 auto;
+}
+
+.header {
+    margin-bottom: 16px;
+}
+
+.header * {
     display: flex;
-    text-align: center;
     justify-content: center;
-    margin: 6px auto 0px !important;
-    padding: 0;
+    text-align: center;
 }
 
-.headerInfo > ul > li {
-    display: inline;
-    white-space: pre;
-    list-style-type: none;
+.header h1 {
+    order: 0;
 }
 
-.headerInfo > ul > li:not(:last-child) {
-    margin-right: 8px;
-}
-
-.headerInfo > ul > li:not(:last-child):after {
-    content: "•";
-    margin-left: 8px;
+.header {
+    order: 1;
 }

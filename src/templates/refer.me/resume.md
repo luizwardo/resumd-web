@@ -1,10 +1,12 @@
-# Name
+<div class="header">
 
-City, State ZIP (Open to Remote) | (555) 123-5555 | fake@email.com
+# Your Name
+
+City, State ZIP (Open to Remote) | (555) 123-5555 | email@email.com
 
 [LinkedIn](linkedin.com) | [GitHub](github.com)
 
-<div className="vertical-spacer"></div>
+</div>
 
 ## Technical Skills
 
@@ -15,8 +17,6 @@ City, State ZIP (Open to Remote) | (555) 123-5555 | fake@email.com
 **Testing/Deployment** | Jest, Mocha, Chai, AWS:EC2, AWS:ECS, Terraform, JUnit
 
 **Developer Tools** | Docker, Git, npm, Webpack, Babel, Agile Methodology, TDD
-
-<div className="vertical-spacer"></div>
 
 ## Experience & Projects
 
@@ -29,8 +29,6 @@ _Backend redesign for reviews module of legacy e-commerce microservice_<span cla
 - Reduced query times to database from 6,000 ms to **12 ms** by using aggregator functions and indexing foreign keys
 - Mentored peer engineers on front-end development and best practices
 
-<div className="vertical-spacer"></div>
-
 ### Front-End Engineer, UI Lead | Name of Application<span class="spacer"></span>Jan 2021 - Jan 2022
 
 _Remote learning management system web application_ <span class="spacer"></span> JavaScript | Next.js | MUI | Node.js | Firebase | Jest
@@ -39,8 +37,6 @@ _Remote learning management system web application_ <span class="spacer"></span>
 - Directed modeling of data and API endpoints to allow for seamless frontend integration to backend
 - Implemented server-side rendering with Next.js to improve page load time, achieving Lighthouse SEO score of 100
 
-<div className="vertical-spacer"></div>
-
 ### Front-End Engineer, UI Lead | Name of Application<span class="spacer"></span>Jan 2021 - Jan 2022
 
 _Remote learning management system web application_ <span class="spacer"></span> JavaScript | Next.js | MUI | Node.js | Firebase | Jest
@@ -48,8 +44,6 @@ _Remote learning management system web application_ <span class="spacer"></span>
 - Facilitated discussions with front-end team to assess client expectations and constructed Figma wireframe
 - Directed modeling of data and API endpoints to allow for seamless frontend integration to backend
 - Implemented server-side rendering with Next.js to improve page load time, achieving Lighthouse SEO score of 100
-
-<div className="vertical-spacer"></div>
 
 ### Front-End Software Engineer | Name of Application <span class="spacer"></span> 2020-2021
 
@@ -58,8 +52,6 @@ _Single page e-commerce website_ <span class="spacer"></span> JavaScript | React
 - Architected a front-end service of a ratings and reviews system to allow users to post reviews, view average ratings, search by keyword, and sort by helpfulness, relevance, date, and/or star ratings for a specific product
 - Improved web page quality by enabling text compression through Brotli and React Lazy Load, increasing Google Lighthouse performance by 132%
 - Tracked user interactions throughout the application with React higher-order components to reuse component logic
-
-<div className="vertical-spacer"></div>
 
 <!-- Move this section above Technical Skills if you're a student/new grad -->
 
