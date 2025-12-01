@@ -1,20 +1,17 @@
-<!--
-Full credit for this template goes to Jake. Original template is in LaTeX here:
-https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs
--->
+<!-- Credits to Jake Ryan for this template; original: https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs -->
+
 # Jake Ryan
 
-<div class="section headerInfo">
+<div class="contact">
 
-- 123-456-7890
-- [realemail@gmail.com](mailto:realemail@gmail.com)
+- (123) 456-7890
+- [your@email.com](mailto:your@email.com)
 - [linkedin.com/in/name](linkedin.com/in/name)
 - [github.com/name](https://github.com/name)
 
 </div>
 
 ## Education
-
 
 ### Southwestern University <span class="spacer"></span><span class="normal">Aug. 2018 &ndash; May 2021</span>
 
@@ -42,6 +39,7 @@ https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs
 - Maintain upkeep of computers, classroom equipment, and 200 printers across campus
 
 ### Artificial Intelligence Research Assistant<span class="spacer"></span><span class="normal"> May 2019 &ndash; July 2019 </span>
+
 #### Southwestern University <span class="spacer"></span> Georgetown, TX
 
 - Explored methods to generate video game dungeons based off of The Legend of Zelda
@@ -58,14 +56,15 @@ https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs
 ### Artificial Intelligence Research Assistant<span class="spacer"></span><span class="normal"> May 2019 &ndash; July 2019 </span> -->
 
 ## Projects
-### [Gitlytics](https://example.com)<span class="tech-stack">&nbsp;| *Python, Flask, React, PostgreSQL, Docker*</span><span class="spacer"></span><span class="normal">June 2020 &ndash; Present</span>
+
+### [Gitlytics](https://example.com)<span class="tech-stack">&nbsp;| _Python, Flask, React, PostgreSQL, Docker_</span><span class="spacer"></span><span class="normal">June 2020 &ndash; Present</span>
 
 - Developed a full-stack web application using with Flask serving a REST API with React as the frontend
 - Implemented GitHub OAuth to get data from user's repositories
 - Visualized GitHub data to show collaboration
 - Used Celery and Redis for asynchronous tasks
 
-### Simple Paintball<span class="tech-stack">&nbsp;| *Spigot API, Java, Maven, TravisCI, Git*</span><span class="spacer"></span><span class="normal">May 2018 &ndash; May 2020</span>
+### Simple Paintball<span class="tech-stack">&nbsp;| _Spigot API, Java, Maven, TravisCI, Git_</span><span class="spacer"></span><span class="normal">May 2018 &ndash; May 2020</span>
 
 - Developed a Minecraft server plugin to entertain kids during free time for a previous job
 - Published plugin to websites gaining **2K+ downloads** and an average 4.5/5-star review
@@ -74,10 +73,7 @@ https://www.overleaf.com/latex/templates/jakes-resume/syzfjbzwjncs
 
 ## Technical Skills
 
-<span class="indent"></span>**Languages**: Java, Python, C/C++, SQL, PostgreSQL, JavaScript, HTML, CSS, R
-
-<span class="indent"></span>**Frameworks**: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI
-
-<span class="indent"></span>**Developer Tools**: Git, Docker, TravisCI, Google Cloud Platform, VS Code, AWS
-
-<span class="indent"></span>**Libraries**: pandas, NumPy, Matplotlib
+> **Languages**: Java, Python, C/C++, SQL, PostgreSQL, JavaScript, HTML, CSS, R
+> **Frameworks**: React, Node.js, Flask, JUnit, WordPress, Material-UI, FastAPI
+> **Developer Tools**: Git, Docker, TravisCI, Google Cloud Platform, VS Code, AWS
+> **Libraries**: pandas, NumPy, Matplotlib
